@@ -1,0 +1,11 @@
+{
+  "name": "mongoose-connection",
+  "author": "Justin Singleton",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.0",
+    "mongoose": "^5.7.0",
+    "morgan": "^1.9.1"
+  }
+}
