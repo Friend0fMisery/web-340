@@ -1,0 +1,40 @@
+<div class="button-wrapper">
+  <input id="clickMe" type="button" value="Add New" onclick="newFunction();" />
+</div>
+<script>
+  document.getElementById("Add New").onclick = newFunction;
+
+  var el = document.getElementById("Add New");
+
+  if (el.addEventListener)
+    el.addEventListener("click", newFunction, false);
+  else if (el.attachEvent)
+    el.attachEvent('onclick', newFunction);
+
+  var person = prompt("Please Enter Your Name", "Harry Potter");
+  function newFunction() {
+    if (person == null || person == "") {
+      txt = "User cancelled the prompt.";
+    } else {
+      txt = "Hello " + person + "! How are you today?";
+    }
+  };
+</script>
+<style>
+  .button-wrapper {
+    margin-left: 550px;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 100px;
+
+  }
+  #clickMe {
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+  }
+  #clickMe:hover {
+    background-color: #ccc;
+  }
+</style>
