@@ -14,6 +14,7 @@ var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
 var logger = require('morgan');
+var helmet = require('helmet');
 var Employee = require("./models/employee");
 var mongoDB = "mongodb+srv://Friend0fMisery:Kool6767!@buwebdev-cluster-1-sn3vf.mongodb.net/test?retryWrites=true&w=majority";
 var app = express();
@@ -30,11 +31,10 @@ db.once("open", function() {
   console.log("Application connected to mLab MongoDB Instance");
 });
 
-
-
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(logger('short'));
+app.use(helmet.xssFilter());
 
 app.get("/", function(req, res) {
   res.render("index", {
