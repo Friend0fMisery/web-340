@@ -1,40 +1,42 @@
-<div class="button-wrapper">
-  <input id="clickMe" type="button" value="Add New" onclick="newFunction();" />
-</div>
-<script>
-  document.getElementById("Add New").onclick = newFunction;
+<!DOCTYPE html>
+<html lang="en">
+  <% include header %>
+  <body>
+    <% include navbar %>
 
-  var el = document.getElementById("Add New");
+    <div role="main" class="container">
+      <br /><br />
 
-  if (el.addEventListener)
-    el.addEventListener("click", newFunction, false);
-  else if (el.attachEvent)
-    el.attachEvent('onclick', newFunction);
+      <h2>Employee Entry Page</h2>
+      <form method="post" action="/process">
+        <div class="form-group">
+          <label for="txtName">Name:</label>
+          <input type="text" class="form-control" id="txtName" name="txtName" />
+        </div>
+        <div class="form-group">
+          <label for="txtTitle">Title:</label>
+          <input type="text" class="form-control" id="txtTitle" name="txtTitle" />
+        </div>
+        <div class="form-group">
+          <label for="txtEMail">E-Mail:</label>
+          <input type="text" class="form-control" id="txtEMail" name="txtEMail" />
+        </div>
+        <div class="form-group">
+          <label for="txtNotes">Notes:</label>
+          <input type="text" class="form-control" id="txtNotes" name="txtNotes" />
+        </div>
+        <div class="form-group">
+          <input name="_csrf" value="<%= csrfToken %>" type="hidden" />
 
-  var person = prompt("Please Enter Your Name", "Harry Potter");
-  function newFunction() {
-    if (person == null || person == "") {
-      txt = "User cancelled the prompt.";
-    } else {
-      txt = "Hello " + person + "! How are you today?";
-    }
-  };
-</script>
-<style>
-  .button-wrapper {
-    margin-left: 550px;
-    margin-right: auto;
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 100px;
+          <button type="submit" class="btn btn-secondary float-right">
+            Submit
+          </button>
+        </div>
+      </form>
+      <br /><br />
 
-  }
-  #clickMe {
-    padding: 10px;
-    background-color: white;
-    text-align: center;
-  }
-  #clickMe:hover {
-    background-color: #ccc;
-  }
-</style>
+      <a href="/">Return to Home</a>
+    </div>
+    <% include scripts %>
+  </body>
+</html>

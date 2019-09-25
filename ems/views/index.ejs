@@ -1,11 +1,16 @@
-<% include header %>
-<body>
-  <% include navbar %>
-  <h1>
-    Employee Management System
-  </h1>
-  <% include list %>
-  <% include new %>
-</body>
-<% include scripts %>
-<% include footer %>
+<!DOCTYPE html>
+<html lang="en">
+  <% include header %>
+  <body>
+    <% include navbar %>
+    <div role="main" class="container">
+      <h1>
+        Employee Management System
+      </h1>
+      <% include list %>
+      <button type="add" class="btn btn-secondary float-right" onclick="window.open('google.com')">Add new</button>
+    </body>
+  </div>
+  <% include scripts %>
+  <% include footer %>
+</html>
