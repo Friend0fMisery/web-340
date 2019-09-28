@@ -54,8 +54,28 @@ app.use(function(req, res, next) {
 });
 
 app.get("/", function(req, res) {
-  res.render("index", {
-    title: "Home Page",
+  Employee.find({}, function (err, employees) {
+    if (err) {
+      console.log(err);
+      throw err;
+    } else {
+      console.log(employees);
+      res.render("index", {
+        title: "Home Page",
+        employees: employees
+      });
+    };
+  });
+});
+
+app.get("/list", function(req, res) {
+  Employee.find({}, function(error, employees) {
+    if(error) throw error;
+
+    res.render("list", {
+      title: "Employee List",
+      employees: employees
+    });
   });
 });
 
@@ -72,8 +92,40 @@ app.get("/view", function(req, res) {
   });
 });
 
+app.get("/new", function(req, res) {
+  res.render("new", {
+    title: "New Employee"
+  });
+});
+
 app.post("/process", function(req, res) {
   console.log(req.body.txtName);
+  if (!req.body.txtName) {
+    res.status(400).send("Entries must have a name")
+    return;
+  }
+
+  var employeeName = req.body.txtName;
+  console.log(employeeName);
+  var employeeTitle = req.body.txtTitle;
+  console.log(employeeTitle);
+  var employeeEMail = req.body.txtEMail;
+  console.log(employeeEMail);
+  var employeeNotes = req.body.txtNotes;
+  console.log(employeeNotes);
+
+  var employee = new Employee({
+    name: employeeName,
+    title: employeeTitle,
+    email: employeeEMail,
+    notes: employeeNotes
+  });
+
+  employee.save(function(error) {
+    if (error) throw error;
+    console.log(employeeName + " saved successfully!");
+  });
+
   res.redirect("/");
 });
 
