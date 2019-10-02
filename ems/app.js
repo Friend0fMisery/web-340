@@ -29,6 +29,7 @@ mongoose.connect(mongoDB, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });
+
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
@@ -79,16 +80,22 @@ app.get("/list", function(req, res) {
   });
 });
 
-app.get("/view", function(req, res) {
-  if(!req.body.txtName) {
-    res.status(400).send('Entries must have a name');
-    return;
-  }
-  const employeeName = req.body.txtName;
-  console.log(employeeName);
+app.get("/view/:queryName", function(req, res) {
+  var queryName = req.params.queryName;
 
-  res.render("view", {
-    title: "View"
+  Employee.find({'name': queryName}, function(error, employees) {
+    if (error) throw error;
+    console.log(employees);
+    if (employees.length > 0) {
+      res.render("view", {
+        title: "Employee Record",
+        employee: employees
+      });
+    }
+
+    else {
+      res.redirect("/list")
+    }
   });
 });
 

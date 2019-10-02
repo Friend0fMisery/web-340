@@ -1,49 +1,48 @@
-<% if(employees.length) { %>
-<h2>-- Employee Listing --</h2><br />
-<a class="btn btn-primary btn-hover" role="button" href="/new" style="color: white;">Add new</a>
-<table class="table table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Title</th>
-      <th>E-Mail</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% employees.forEach(function(entry) { %>
+<div role="main" class="container" style="width: 50%;".>
+  <br /><br />
+  <% if(employees.length) { %>
+  <h2>-- Employee Listing --</h2><br />
+  <a class="btn btn-primary btn-hover" role="button" href="/new" style="color: white;">Add new</a>
+  <br/>
+  <table class="table table-hover">
+    <thead class="thead-dark">
       <tr>
-        <td><%= entry.name %></td>
-        <td><%= entry.title %></td>
-        <td><%= entry.email %></td>
-        <td><%= entry.notes %></td>
+        <th>Name</th>
+        <th>Title</th>
+        <th>E-Mail</th>
+        <th>Notes</th>
       </tr>
-  </tbody>
-  <% }) %>
-</table>
-<% } else { %>
-  No entries!
-  <a
-  class="btn btn-primary btn-hover"
-  role="button" href="/new"
-  style="color: white;">Add one!</a>
-<% } %>
+    </thead>
+    <tbody>
+      <% employees.forEach(function(entry) { %>
+        <tr>
+          <td><%= entry.name %></td>
+          <td><%= entry.title %></td>
+          <td><%= entry.email %></td>
+          <td><%= entry.notes %></td>
+          <td><a href="/view/<%= entry.name %>">VIEW</a></td>
+        </tr>
+    </tbody>
+    <% }) %>
+  </table>
+  <% } else { %>
+    No entries!
+    <a
+    class="btn btn-primary btn-hover"
+    role="button" href="/new"
+    style="color: white;">Add one!</a>
+  <% } %>
+  <br />
 
-<% include scripts %>
+  <% include scripts %>
+</div>
 
 <style>
-  .table-wrapper {
-    max-width: 700px;
-    max-height: 400px;
-    overflow: scroll;
-    margin-left: auto;
-    margin-right: auto;
-    background: white;
-  }
-
   table {
     border: 1px solid #ddd;
     border-collapse: collapse;
+    background: white;
+    margin-top: 20px;
   }
 
   td, th {
